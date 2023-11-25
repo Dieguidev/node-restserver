@@ -49,12 +49,12 @@ const deleteUsers = async (req = request, res = response) => {
   //eliminar fisicamente de la base de datos
   // const user = await User.findByIdAndDelete(userId);
 
-  //eliminar fisicamente de la base de datos
+  //cambiar de true a false el is active
   const user = await User.findByIdAndUpdate(userId, { state: false });
 
-  res.json({
-    user,
-  });
+  const userAutenticated = req.user;
+
+  res.json({ user, userAutenticated });
 };
 
 module.exports = {
